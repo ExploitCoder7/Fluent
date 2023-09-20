@@ -17,16 +17,21 @@ local Window = Fluent:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
---[[
+---[[
 Title = <string> - Script hub name
 Subtitle = <string> - Shows who made the script (you can put other things)
 TabWidth = <Number> - Sets the tab width
 Size = Udim2.fromOffset(580, 460), - The script hub size
 Acrylic = <bool> - Blurs The Backround
 Theme = <string> - library theme
+MinimizeKey = explains itself..
+]]
 ```
-
---Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+## Icons
+```lua
+https://lucide.dev/icons/ for the tabs, icons are optional
+```
+## Creating tabs
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })

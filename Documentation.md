@@ -1,5 +1,6 @@
 # Fluent UI Library
-made by 5awid/dawid
+<img src="Assets/logodark.png#gh-dark-mode-only" alt="fluent">
+<img src="Assets/logolight.png#gh-light-mode-only" alt="fluent">
 # Getting the loadstring
 ```lua
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()

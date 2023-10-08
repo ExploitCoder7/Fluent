@@ -23,11 +23,12 @@ local Window = Fluent:CreateWindow({
 https://lucide.dev/icons/ for the tabs, icons are optional
 ```
 # Creating Tabs
+```lua
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
-
+```
 # Notifying the user
 ```lua
     Fluent:Notify({

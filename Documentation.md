@@ -6,7 +6,7 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 ```
-## Creating a Window
+# Creating a Window
 ```lua
 local Window = Fluent:CreateWindow({
     Title = "Fluent " .. Fluent.Version,
@@ -17,72 +17,52 @@ local Window = Fluent:CreateWindow({
     Theme = "Dark",
     MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
 })
----[[
-Title = <string> - Script hub name
-Subtitle = <string> - Shows who made the script (you can put other things)
-TabWidth = <Number> - Sets the tab width
-Size = Udim2.fromOffset(580, 460), - The script hub size
-Acrylic = <bool> - Blurs The Backround
-Theme = <string> - library theme
-MinimizeKey = explains itself..
-]]
 ```
-## Icons
+# Icons
 ```lua
 https://lucide.dev/icons/ for the tabs, icons are optional
 ```
-## Creating tabs
+# Creating Tabs
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
-local Options = Fluent.Options
-
-do
+# Notifying the user
+```lua
     Fluent:Notify({
         Title = "Notification",
         Content = "This is a notification",
         SubContent = "SubContent", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
-
-
-
+```
+# Textual Elements
+# Creating Paragrahps
+```lua
     Tabs.Main:AddParagraph({
         Title = "Paragraph",
         Content = "This is a paragraph.\nSecond line!"
     })
-
-
-
+```
+# Creating Sections
+```lua
+local Section = Tabs.Main:AddSection("Section Example")
+```
+# Elements
+# Creating Buttons
+```lua
     Tabs.Main:AddButton({
         Title = "Button",
         Description = "Very important button",
         Callback = function()
-            Window:Dialog({
-                Title = "Title",
-                Content = "This is a dialog",
-                Buttons = {
-                    {
-                        Title = "Confirm",
-                        Callback = function()
-                            print("Confirmed the dialog.")
-                        end
-                    },
-                    {
-                        Title = "Cancel",
-                        Callback = function()
-                            print("Cancelled the dialog.")
-                        end
-                    }
-                }
-            })
+            
         end
     })
+```
 
-
-
+# Creating Toggles
+```lua
     local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "Toggle", Default = false })
 
     Toggle:OnChanged(function()
@@ -90,9 +70,10 @@ do
     end)
 
     Options.MyToggle:SetValue(false)
+```
 
-
-    
+# Creating Sliders
+```lua
     local Slider = Tabs.Main:AddSlider("Slider", {
         Title = "Slider",
         Description = "This is a slider",
@@ -104,30 +85,29 @@ do
             print("Slider was changed:", Value)
         end
     })
-
+Simply Update The Slider With:
     Slider:OnChanged(function(Value)
         print("Slider changed:", Value)
     end)
-
+Set Local Slider's Value
     Slider:SetValue(3)
+```
 
-
-
+# Creating Dropdowns
+```lua
     local Dropdown = Tabs.Main:AddDropdown("Dropdown", {
         Title = "Dropdown",
         Values = {"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen"},
         Multi = false,
         Default = 1,
     })
-
+ -- Set Local Dropdown's Value
     Dropdown:SetValue("four")
-
+-- Simply Update The Dropdown With:
     Dropdown:OnChanged(function(Value)
         print("Dropdown changed:", Value)
     end)
-
-
-    
+-- MultiDropdown
     local MultiDropdown = Tabs.Main:AddDropdown("MultiDropdown", {
         Title = "Dropdown",
         Description = "You can select multiple values.",
@@ -149,6 +129,26 @@ do
         end
         print("Mutlidropdown changed:", table.concat(Values, ", "))
     end)
+```
+
+
+# Creating TextBoxes
+```lua
+local Input = Tabs.Main:AddInput("Input", {
+        Title = "Input",
+        Default = "Default",
+        Placeholder = "Placeholder",
+        Numeric = false, -- Only allows numbers
+        Finished = false, -- Only calls callback when you press enter
+        Callback = function(Value)
+            print("Input changed:", Value)
+        end
+    })
+-- Updating TextBox
+    Input:OnChanged(function()
+        print("Input updated:", Input.Value)
+    end)
+```
 
 
 
@@ -224,23 +224,9 @@ do
     Keybind:SetValue("MB2", "Toggle") -- Sets keybind to MB2, mode to Hold
 
 
-    local Input = Tabs.Main:AddInput("Input", {
-        Title = "Input",
-        Default = "Default",
-        Placeholder = "Placeholder",
-        Numeric = false, -- Only allows numbers
-        Finished = false, -- Only calls callback when you press enter
-        Callback = function(Value)
-            print("Input changed:", Value)
-        end
-    })
 
-    Input:OnChanged(function()
-        print("Input updated:", Input.Value)
-    end)
-end
-
-
+# Addon
+```lua
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
@@ -277,3 +263,4 @@ Fluent:Notify({
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+```
